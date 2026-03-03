@@ -41,9 +41,9 @@ export default function Navbar() {
               className="flex items-center gap-3 ms-2 md:me-24"
             >
               <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8"
-                alt="DVLD Logo"
+                src="/dvld-logo.png"
+                className="h-8 md:h-10 object-contain drop-shadow-sm"
+                alt="Iraq DVLD Official Logo"
               />
               <span className="self-center text-xl font-bold whitespace-nowrap dark:text-white text-gray-900 tracking-tight">
                 DVLD{" "}
