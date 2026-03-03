@@ -1,116 +1,64 @@
-# DVLD Frontend Application
+DVLD Frontend - React + TypeScript
+This is the frontend application for the Driving & Vehicles Licensing Department (DVLD). It provides a dashboard to manage drivers, licenses, and applications.
 
-The web interface for the DVLD application is built with **React**, **TypeScript**, and **Vite**. It uses RTK Query for data management, TailwindCSS for styling, and an organized feature-based component structure.
+🛠 Tech Stack & Tools
+React 19 & TypeScript: Core framework and type safety.
 
-## Project Structure Overview
+Vite: Build tool for fast development.
 
-```
-src/
-  api/               # API setup and RTK Query base slice
-  app/               # Redux store and global configuration
-  components/        # Shared/common components
-  features/          # Feature folders (applications, auth, drivers, etc.)
-  hooks/             # Custom React hooks
-  layouts/           # Layout components like MainLayout
-  pages/             # Top-level pages (NotFound, Dashboard, etc.)
-  routes/            # Router configuration and guard logic
-  types/             # TypeScript interfaces and enums
-  utils/             # General utility functions
-```
+Redux Toolkit (RTK): Global state management.
 
-## Getting Started
+RTK Query: For API data fetching and caching (integrated with Redux).
 
-### Prerequisites
+Tailwind CSS 4: For styling and responsive UI.
 
-- Node.js 18+ (Node 20 recommended)
-- npm or pnpm
-- Git
+React Router Dom: For navigation and routing.
 
-### Setup
+React Hook Form + Zod: For form handling and schema-based validation.
 
-1. Clone the repository:
+Headless UI: For unstyled accessible UI components (like Modals/Dropdowns).
 
-   ```bash
-   git clone <remote-repo-url>
-   cd dvld
-   ```
+Sonner: For toast notifications.
 
-2. Install dependencies:
+Lucide React: For icons.
 
-   ```bash
-   npm install
-   ```
+Date-fns & React Datepicker: For handling and picking dates.
 
-3. Create a `.env` file at the project root and set environment variables:
+📂 Project Structure
+src/api: RTK Query base API slice.
 
-   ```env
-   VITE_API_BASE_URL=https://your-api-endpoint
-   ```
+src/app: Redux store configuration.
 
-   **Do not commit this file**; it’s ignored via `.gitignore`.
+src/features: Modular features (Auth, Applications, Drivers, etc.).
 
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+src/components: Reusable UI elements.
 
-### Available Scripts
+src/hooks: Custom React hooks.
 
-|---------------------------------------------------------------------|
-| Command | Description |
-|--------------------|------------------------------------------------|
-| `npm run dev` | Start development server with HMR |
-| `npm run build` | Build the production bundle (`tsc -b && vite`) |
-| `npm run preview` | Preview the built output locally |
-| `npm run lint` | Run ESLint across the codebase |
-|---------------------------------------------------------------------|
+src/types: TypeScript interfaces.
 
-## Feature Folder Conventions
+🚀 Getting Started
+Clone the repo:
 
-Each subfolder under `src/features` typically contains:
+Bash
+git clone <your-repo-url>
+Install dependencies:
 
-- An API slice file (`*ApiSlice.ts`) for server interactions
-- A main page component (`*Page.tsx` or components folder)
-- Related subcomponents
+Bash
+npm install
+Environment Setup:
+Create a .env file in the root:
 
-Example:
+VITE_API_BASE_URL=https://localhost:7001/api
+Run Dev Server:
 
-```text
-src/features/drivers/
-  DriverApiSlice.ts
-  DriversPage.tsx
-  components/
-    DriverCard.tsx
-    DriverTable.tsx
-```
+Bash
+npm run dev
+📝 Features Implemented
+Authentication: Login/Logout using JWT stored in the state.
 
-## Additional Configuration
+Data Tables: Listing drivers and licenses with server-side pagination.
 
-- **TailwindCSS**: Configuration lives in `tailwind.config.js`. Add colors, fonts, etc. as needed.
-- **ESLint**: Configured in `eslint.config.js` with TypeScript-aware rules.
-- **RTK Query**: Core logic resides in `api/apiSlice.ts`; add endpoints within feature slices.
+Form Validation: Complex forms validated using Zod schemas.
 
-## Deployment & CI/CD
-
-A typical CI pipeline includes:
-
-1. `npm ci`
-2. `npm run lint` (optional but recommended)
-3. `npm run build`
-4. Deploy the `dist/` folder to your hosting provider (Netlify, Vercel, Azure Static Web Apps, etc.)
-
-## Notes & Best Practices
-
-- For multiple environments (prod, staging), use `.env.production`, `.env.staging`, etc., and load them in scripts.
-- Keep sensitive keys and tokens out of the repo.
-
-## Contributing
-
-1. Open an issue or fork the repository.
-2. Create a new branch with a descriptive name.
-3. Make your changes and add tests where appropriate.
-4. Submit a pull request and discuss any feedback.
-
----
-
-© 2026 DVLD. All rights reserved.
+Notifications: Real-time feedback using Sonner toasts.
