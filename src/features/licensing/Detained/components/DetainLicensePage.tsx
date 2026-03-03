@@ -18,6 +18,7 @@ import LicenseSelectorCard from "../../Licenses/components/LicenseSelectorCard";
 import type { License } from "../../../../types/licenses";
 import type { SerializedError } from "../../../../types/auth";
 import { useDetainLicenseMutation } from "../DetainedApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const detainLicenseSchema = z.object({
   fineFees: z
@@ -48,6 +49,12 @@ export default function DetainLicensePage(): JSX.Element {
     resolver: zodResolver(detainLicenseSchema),
     defaultValues: { fineFees: 0 },
   });
+
+  useTitle(
+    selectedLicense
+      ? `Detain License: #${selectedLicense.licenseID}`
+      : "Detain Driving License",
+  );
 
   const [detainLicense, { isLoading: isDetaining }] =
     useDetainLicenseMutation();

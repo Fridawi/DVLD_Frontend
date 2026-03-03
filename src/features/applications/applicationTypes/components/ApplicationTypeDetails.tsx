@@ -14,6 +14,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import { useAppSelector } from "../../../../hooks/hooks";
 import { useGetApplicationTypeByIdQuery } from "../applicationTypesApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const TypeField = ({
   icon: Icon,
@@ -58,7 +59,7 @@ export default function ApplicationTypeDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetApplicationTypeByIdQuery(numericID);
-
+  useTitle(appType ? `Details: ${appType.title}` : "Loading Details...");
   if (isLoading) {
     return (
       <div className="flex flex-col justify-center items-center h-[50vh] gap-3">

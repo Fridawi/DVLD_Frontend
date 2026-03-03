@@ -13,6 +13,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import TestAppointmentCard from "../../Test Appointments/components/TestAppointmentCard";
 import { useGetTestByIdQuery } from "../TestApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function TestDetails(): JSX.Element {
   const { testID } = useParams();
@@ -20,6 +21,12 @@ export default function TestDetails(): JSX.Element {
 
   const { data: testData, isLoading: isLoadingTest } = useGetTestByIdQuery(
     Number(testID),
+  );
+
+  useTitle(
+    testData
+      ? `Test Result: ${testData.testResult ? "Passed" : "Failed"}`
+      : "Test Details",
   );
 
   if (isLoadingTest) {

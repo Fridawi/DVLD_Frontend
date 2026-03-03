@@ -18,6 +18,7 @@ import {
 import PageHeader from "../../../components/common/PageHeader";
 import { useGetPersonByIdQuery } from "../peopleApiSlice";
 import { type JSX } from "react";
+import { useTitle } from "../../../hooks/useTitle";
 
 const PersonInfoField = ({
   icon: Icon,
@@ -61,6 +62,8 @@ export default function PersonDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetPersonByIdQuery(numericPersonId);
+
+  useTitle(person ? `Profile: ${person.fullName}` : "Identity Profile");
 
   if (isLoading) {
     return (

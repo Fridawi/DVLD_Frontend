@@ -23,6 +23,7 @@ import {
   useGetPersonByIdQuery,
 } from "../peopleApiSlice";
 import type { SerializedError } from "../../../types/auth";
+import { useTitle } from "../../../hooks/useTitle";
 
 const GENDER_MALE = 0;
 const DEFAULT_COUNTRY_ID = 80;
@@ -52,6 +53,12 @@ export default function AddEditPersonForm() {
     useGetPersonByIdQuery(Number(personID), {
       skip: !isEditMode,
     });
+
+  useTitle(
+    isEditMode
+      ? `Edit Person: ${personData?.fullName || personID}`
+      : "Add New Person",
+  );
 
   const [addPerson, { isLoading: isAdding }] = useAddPersonMutation();
   const [updatePerson, { isLoading: isUpdating }] = useUpdatePersonMutation();

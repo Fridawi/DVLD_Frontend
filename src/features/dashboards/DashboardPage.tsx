@@ -21,11 +21,12 @@ import { StatsCard } from "./components/StatsCard";
 import QuickActionButton from "./components/QuickActionButton";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/hooks";
+import { useTitle } from "../../hooks/useTitle";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
-
+  useTitle("Dashboard");
   const isAdmin = user?.role === "Admin";
   const { data: driversData } = useGetDriversQuery({
     pageNumber: 1,

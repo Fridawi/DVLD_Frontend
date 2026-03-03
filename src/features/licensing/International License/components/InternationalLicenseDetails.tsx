@@ -4,6 +4,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import { useGetInternationalLicenseByIdQuery } from "../InternationalLicenseApiSlice";
 import InternationalLicenseCard from "./InternationalLicenseCard";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function InternationalLicenseDetails(): JSX.Element {
   const { intLicenseID } = useParams<{ intLicenseID: string }>();
@@ -15,6 +16,8 @@ export default function InternationalLicenseDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetInternationalLicenseByIdQuery(numericID);
+
+  useTitle(`International License #${numericID}`);
 
   if (isLoading) {
     return (

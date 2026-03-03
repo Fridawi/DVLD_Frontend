@@ -8,11 +8,13 @@ import PageHeader from "../../../components/common/PageHeader";
 import Filters from "../../../components/common/Filters";
 import type { SerializedError } from "../../../types/auth";
 import TablePagination from "../../../components/common/TablePagination";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function DetainedsPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
+  useTitle("Manage Detained Licenses");
 
   const {
     data: pagedResult,

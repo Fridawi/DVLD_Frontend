@@ -9,12 +9,14 @@ import type { SerializedError } from "../../../types/auth";
 import ApplicationTypesTable from "./components/ApplicationTypesTable";
 import { useAppSelector } from "../../../hooks/hooks";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function ApplicationTypePage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
   const { user } = useAppSelector((state) => state.auth);
+  useTitle("Application Types");
 
   const {
     data: pagedResult,

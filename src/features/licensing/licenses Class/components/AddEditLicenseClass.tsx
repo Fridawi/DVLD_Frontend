@@ -14,6 +14,7 @@ import {
   useGetLicenseClassByIdQuery,
   useUpdateLicenseClassMutation,
 } from "../LicensesClassApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const licenseClassSchema = z.object({
   className: z.string().min(3, "Class Name is required"),
@@ -39,6 +40,13 @@ export default function AddEditLicenseClassForm() {
     useGetLicenseClassByIdQuery(Number(licenseClassID), {
       skip: !isEditMode,
     });
+
+  useTitle(
+    isEditMode
+      ? `Edit Class: ${licenseClassData?.className || licenseClassID}`
+      : "Add New License Class",
+  );
+
   const [addLicenseClass, { isLoading: isAdding }] =
     useAddLicenseClassMutation();
   const [updateLicenseClass, { isLoading: isUpdating }] =

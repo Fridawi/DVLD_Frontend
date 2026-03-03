@@ -7,11 +7,13 @@ import type { SerializedError } from "../../../types/auth";
 import LicensesTable from "./components/LicensesTable";
 import { useGetAllLicensesQuery } from "./LicenseApiSlice";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function LicensesPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
+  useTitle("Licenses Management");
 
   const {
     data: pagedResult,

@@ -19,6 +19,7 @@ import {
 import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import { useGetTestAppointmentByIdQuery } from "../TestAppointmentApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const InfoField = ({
   icon: Icon,
@@ -61,6 +62,10 @@ export default function TestAppointmentDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetTestAppointmentByIdQuery(Number(appointmentID));
+
+  useTitle(
+    appointment ? `Apt: ${appointment.fullName}` : "Appointment Details",
+  );
 
   if (isLoading) {
     return (

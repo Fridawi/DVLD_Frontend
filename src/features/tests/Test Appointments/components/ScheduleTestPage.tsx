@@ -25,6 +25,7 @@ import PageHeader from "../../../../components/common/PageHeader";
 import LocalAppCard from "../../../applications/localApp/components/LocalAppCard";
 import type { SerializedError } from "../../../../types/auth";
 import { toast } from "sonner";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const scheduleTestSchema = z.object({
   appointmentDate: z
@@ -59,6 +60,8 @@ export default function ScheduleTestPage() {
     useAddTestAppointmentMutation();
   const [updateTestAppointment, { isLoading: isUpdating }] =
     useUpdateTestAppointmentMutation();
+
+  useTitle(isEditMode ? "Reschedule Test Appointment" : "Schedule New Test");
 
   const {
     control,

@@ -8,6 +8,7 @@ import PageHeader from "../../components/common/PageHeader";
 import Filters from "../../components/common/Filters";
 import type { SerializedError } from "../../types/auth";
 import TablePagination from "../../components/common/TablePagination";
+import { useTitle } from "../../hooks/useTitle";
 
 export default function DriversPage() {
   const [page, setPage] = useState(1);
@@ -27,6 +28,7 @@ export default function DriversPage() {
     filterColumn: filterParams.column,
     filterValue: filterParams.value,
   });
+  useTitle("Drivers");
 
   const drivers = pagedResult?.data || [];
 

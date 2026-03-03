@@ -6,11 +6,14 @@ import type { SerializedError } from "../../../types/auth";
 import TestsTable from "./components/TestsTable";
 import TablePagination from "../../../components/common/TablePagination";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function TestsPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
+
+  useTitle("Manage Tests");
 
   const {
     data: pagedResult,

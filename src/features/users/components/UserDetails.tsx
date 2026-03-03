@@ -24,6 +24,7 @@ import PageHeader from "../../../components/common/PageHeader";
 import { useGetPersonByIdQuery } from "../../people/peopleApiSlice";
 import { type JSX } from "react";
 import { useGetUserByIdQuery } from "../usersApiSlice";
+import { useTitle } from "../../../hooks/useTitle";
 
 const UserProfileField = ({
   icon: Icon,
@@ -75,6 +76,8 @@ export default function UserDetails(): JSX.Element {
   } = useGetPersonByIdQuery(user?.personID ?? 0, {
     skip: !user?.personID,
   });
+
+  useTitle(user ? `Profile: ${user.userName}` : "User Profile");
 
   if (userLoading || (personLoading && user?.personID)) {
     return (

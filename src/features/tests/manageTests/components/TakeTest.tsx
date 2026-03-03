@@ -20,6 +20,7 @@ import {
   useUpdateTestMutation,
 } from "../TestApiSlice";
 import TestAppointmentCard from "../../Test Appointments/components/TestAppointmentCard";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const testSchema = z.object({
   testResult: z.boolean({ error: "Required" }),
@@ -43,6 +44,10 @@ export default function AddEditTest() {
 
   const [addTest, { isLoading: isAdding }] = useAddTestMutation();
   const [updateTest, { isLoading: isUpdating }] = useUpdateTestMutation();
+
+  useTitle(
+    isEditMode ? "DVLD | Update Test Result" : "DVLD | Take Test Result",
+  );
 
   const {
     register,

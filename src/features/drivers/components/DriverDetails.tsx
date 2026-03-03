@@ -4,6 +4,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../components/common/PageHeader";
 import DriverCard from "./DriverCard";
 import { useGetDriverByIdQuery } from "../DriverApiSlice";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function DriverDetails(): JSX.Element {
   const { driverID } = useParams<{ driverID: string }>();
@@ -11,6 +12,7 @@ export default function DriverDetails(): JSX.Element {
   const numericID = Number(driverID);
 
   const { data: driver, isLoading, isError } = useGetDriverByIdQuery(numericID);
+  useTitle(`Driver #${numericID}`);
 
   if (isLoading) {
     return (

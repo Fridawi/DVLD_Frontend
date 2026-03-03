@@ -8,10 +8,13 @@ import { UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import Filters from "../../components/common/Filters";
 import type { FilterOption } from "../../types/CommonTypes";
+import { useTitle } from "../../hooks/useTitle";
 
 function PeoplePage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
+
+  useTitle("People");
 
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
 

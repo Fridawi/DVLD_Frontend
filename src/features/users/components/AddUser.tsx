@@ -9,6 +9,7 @@ import type { SerializedError } from "../../../types/auth";
 import PageHeader from "../../../components/common/PageHeader";
 import { ArrowLeft, ChevronRight, Info, Save } from "lucide-react";
 import PersonSelectorCard from "../../people/components/PersonSelectorCard";
+import { useTitle } from "../../../hooks/useTitle";
 
 const addUserSchema = z
   .object({
@@ -36,6 +37,8 @@ export default function AddUser(): JSX.Element {
   const navigate = useNavigate();
   const [step, setStep] = useState<1 | 2>(1);
   const [addUser, { isLoading: isAdding }] = useAddUserMutation();
+
+  useTitle("Create New User");
 
   const {
     register,

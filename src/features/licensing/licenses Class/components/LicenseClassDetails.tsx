@@ -17,6 +17,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import { useAppSelector } from "../../../../hooks/hooks";
 import { useGetLicenseClassByIdQuery } from "../LicensesClassApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const ClassField = ({
   icon: Icon,
@@ -61,6 +62,12 @@ export default function LicenseClassDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetLicenseClassByIdQuery(numericID);
+
+  useTitle(
+    licenseClass
+      ? `Class: ${licenseClass.className} (#${licenseClass.licenseClassID})`
+      : "License Class Details",
+  );
 
   if (isLoading) {
     return (

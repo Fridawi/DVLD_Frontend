@@ -19,6 +19,7 @@ import {
 } from "../DetainedApiSlice";
 import DetainedInfoCard from "./DetainedInfoCard";
 import LicenseSelectorCard from "../../Licenses/components/LicenseSelectorCard";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function ReleaseLicensePage(): JSX.Element {
   const navigate = useNavigate();
@@ -38,7 +39,11 @@ export default function ReleaseLicensePage(): JSX.Element {
     useGetDetainedLicenseByLicenseIdQuery(selectedLicense?.licenseID ?? 0, {
       skip: !selectedLicense || !selectedLicense.isDetained,
     });
-
+  useTitle(
+    selectedLicense
+      ? `Release: #${selectedLicense.licenseID}`
+      : "Release Detained License",
+  );
   const [releaseLicense, { isLoading: isReleasing }] =
     useReleaseLicenseMutation();
 

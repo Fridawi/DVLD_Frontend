@@ -7,11 +7,14 @@ import type { SerializedError } from "../../../types/auth";
 import { useGetTestAppointmentsQuery } from "./TestAppointmentApiSlice";
 import TestAppointmentsTable from "./components/TestAppointmentsTable";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function TestAppointmentsPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
+
+  useTitle("Test Appointments");
 
   const {
     data: pagedResult,

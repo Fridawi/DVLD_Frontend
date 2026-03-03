@@ -5,6 +5,7 @@ import PageHeader from "../../../../components/common/PageHeader";
 import { useGetLocalDrivingLicenseApplicationByIdQuery } from "../LocalAppApiSlice";
 import ApplicationCard from "../../components/ApplicationDetails";
 import LocalAppCard from "./LocalAppCard";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function LocalAppDetails(): JSX.Element {
   const { id } = useParams<{ id: string }>();
@@ -16,6 +17,12 @@ export default function LocalAppDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetLocalDrivingLicenseApplicationByIdQuery(numericID);
+
+  useTitle(
+    app
+      ? `Local App: #${app.localDrivingLicenseApplicationID}`
+      : "Loading Application...",
+  );
 
   if (isLoading) {
     return (

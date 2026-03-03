@@ -9,12 +9,15 @@ import { useAppSelector } from "../../../hooks/hooks";
 import LicensesClassTable from "./components/LicensesClassTable";
 import { useGetLicensesClassQuery } from "./LicensesClassApiSlice";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function LicenseClassesPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
   const { user } = useAppSelector((state) => state.auth);
+
+  useTitle("Licenses Class");
 
   const {
     data: pagedResult,

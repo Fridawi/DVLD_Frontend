@@ -4,6 +4,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import { useGetLicenseByIdQuery } from "../LicenseApiSlice";
 import LicenseInfoCard from "./LicenseInfoCard";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function LicenseDetails(): JSX.Element {
   const { licenseID } = useParams<{ licenseID: string }>();
@@ -15,6 +16,10 @@ export default function LicenseDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetLicenseByIdQuery(numericID);
+
+  useTitle(
+    license ? `License Details: #${license.licenseID}` : "Loading License...",
+  );
 
   if (isLoading) {
     return (

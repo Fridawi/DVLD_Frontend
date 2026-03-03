@@ -14,6 +14,7 @@ import {
   useGetTestTypeByIdQuery,
   useUpdateTestTypeMutation,
 } from "../TestTypesApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const testTypeSchema = z.object({
   title: z.string().min(3, "Title is required"),
@@ -37,6 +38,8 @@ export default function AddEditTestTypeForm() {
   const [addTestType, { isLoading: isAdding }] = useAddTestTypeMutation();
   const [updateTestType, { isLoading: isUpdating }] =
     useUpdateTestTypeMutation();
+
+  useTitle(isEditMode ? "DVLD | Update Test Type" : "DVLD | New Test Type");
 
   const {
     register,

@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Home, AlertCircle } from "lucide-react";
 import { useEffect } from "react";
+import { useTitle } from "../hooks/useTitle";
 
 export default function NotFound() {
   const navigate = useNavigate();
+  useTitle("Page Not Found");
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

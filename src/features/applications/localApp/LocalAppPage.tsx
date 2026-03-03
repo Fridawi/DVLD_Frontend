@@ -9,13 +9,14 @@ import { useAppSelector } from "../../../hooks/hooks";
 import { useGetAllLocalDrivingLicenseApplicationsQuery } from "./LocalAppApiSlice";
 import LocalAppsTable from "./components/LocalAppsTable";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function LocalAppPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
   const { user } = useAppSelector((state) => state.auth);
-
+  useTitle("Local Driving License Applications");
   const {
     data: pagedResult,
     isLoading,

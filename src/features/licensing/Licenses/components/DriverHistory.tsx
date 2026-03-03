@@ -11,6 +11,7 @@ import {
 import PageHeader from "../../../../components/common/PageHeader";
 import { useGetInternationalLicensesByDriverIdQuery } from "../../International License/InternationalLicenseApiSlice";
 import InternationalLicensesTable from "../../International License/components/InternationalLicensesTable";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function DriverHistoryPage() {
   const { licenseID } = useParams<{ licenseID: string }>();
@@ -41,6 +42,11 @@ export default function DriverHistoryPage() {
       { skip: !driverId },
     );
 
+  useTitle(
+    license
+      ? `History: ${license.driverID} | DVLD`
+      : "Loading Driver History...",
+  );
   const localLicenses = pagedResult?.data || [];
   const intLicenses = intPagedResult?.data || [];
 

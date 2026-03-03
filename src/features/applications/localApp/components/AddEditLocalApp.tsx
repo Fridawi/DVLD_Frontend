@@ -27,6 +27,7 @@ import PersonSelectorCard from "../../../people/components/PersonSelectorCard";
 import { useGetApplicationTypesQuery } from "../../applicationTypes/applicationTypesApiSlice";
 import { useGetLicensesClassQuery } from "../../../licensing/licenses Class/LicensesClassApiSlice";
 import type { LicenseClass } from "../../../../types/licenseClass";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const addLocalAppSchema = z.object({
   personID: z.number({ error: "Person selection is required" }).min(1),
@@ -46,6 +47,7 @@ export default function AddEditLocalApp(): JSX.Element {
   const isEditMode = Boolean(id);
   console.log(id);
   const [step, setStep] = useState<1 | 2>(isEditMode ? 2 : 1);
+  useTitle(isEditMode ? "Update Local Application" : "New Local Application");
 
   const { data: localAppData, isLoading: isLoadingLocal } =
     useGetLocalDrivingLicenseApplicationByIdQuery(Number(id), {

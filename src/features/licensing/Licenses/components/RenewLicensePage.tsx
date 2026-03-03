@@ -18,6 +18,7 @@ import LicenseSelectorCard from "./LicenseSelectorCard";
 import type { License } from "../../../../types/licenses";
 import type { SerializedError } from "../../../../types/auth";
 import { useRenewLicenseMutation } from "../LicenseApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const renewLicenseSchema = z.object({
   notes: z.string().optional(),
@@ -33,6 +34,12 @@ export default function RenewLicensePage(): JSX.Element {
     : null;
 
   const [selectedLicense, setSelectedLicense] = useState<License | null>(null);
+
+  useTitle(
+    selectedLicense
+      ? `Renew License: #${selectedLicense.licenseID}`
+      : "Renew Driving License",
+  );
 
   const { register, handleSubmit } = useForm<RenewLicenseFormValues>({
     resolver: zodResolver(renewLicenseSchema),

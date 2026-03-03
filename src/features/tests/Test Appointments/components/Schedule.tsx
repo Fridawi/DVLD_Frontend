@@ -11,6 +11,7 @@ import LocalAppCard from "../../../applications/localApp/components/LocalAppCard
 import ApplicationCard from "../../../applications/components/ApplicationDetails";
 import TestAppointmentsTable from "./TestAppointmentsTable";
 import { toast } from "sonner";
+import { useTitle } from "../../../../hooks/useTitle";
 
 export default function LocalAppTestAppointmentsPage() {
   const { localAppID, testTypeID } = useParams();
@@ -33,6 +34,8 @@ export default function LocalAppTestAppointmentsPage() {
     });
 
   const appointments = pagedResult?.data || [];
+
+  useTitle(testType ? `${testType.title} Appointments` : "Test Appointments");
 
   const handleAddNewAppointment = () => {
     if (hasActive) {

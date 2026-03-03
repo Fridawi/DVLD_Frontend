@@ -8,11 +8,13 @@ import UsersTable from "./components/UsersTable";
 import TablePagination from "../../components/common/TablePagination";
 import Filters from "../../components/common/Filters";
 import type { FilterOption } from "../../types/CommonTypes";
+import { useTitle } from "../../hooks/useTitle";
 
 export default function UserPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
+  useTitle("Users");
 
   const {
     data: pagedResult,
@@ -27,6 +29,7 @@ export default function UserPage() {
     filterColumn: filterParams.column,
     filterValue: filterParams.value,
   });
+
   const users = pagedResult?.data || [];
   const breadcrumbPaths = [{ label: "Users" }];
   const handleSearch = (column: string, value: string) => {

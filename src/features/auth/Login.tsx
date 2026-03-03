@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import type { SerializedError } from "../../types/auth";
 import { useState } from "react";
+import { useTitle } from "../../hooks/useTitle";
 
 const loginSchema = z.object({
   userName: z.string().min(5, "Username must be at least 5 characters"),
@@ -22,6 +23,7 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
+  useTitle("Login");
 
   const {
     register,

@@ -13,6 +13,7 @@ import {
 } from "../applicationTypesApiSlice";
 import type { SerializedError } from "../../../../types/auth";
 import PageHeader from "../../../../components/common/PageHeader";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const applicationTypeSchema = z.object({
   title: z.string().min(3, "Title is required"),
@@ -26,12 +27,11 @@ export default function AddEditApplicationTypeForm() {
   const navigate = useNavigate();
   const { applicationTypeID } = useParams<{ applicationTypeID: string }>();
   const isEditMode = Boolean(applicationTypeID);
-
   const { data: applicationTypeData, isLoading: isLoadingApplicationType } =
     useGetApplicationTypeByIdQuery(Number(applicationTypeID), {
       skip: !isEditMode,
     });
-
+  useTitle(isEditMode ? "Update Application Type" : "Add New Application Type");
   const [addApplicationType, { isLoading: isAdding }] =
     useAddApplicationTypeMutation();
   const [updateApplicationType, { isLoading: isUpdating }] =

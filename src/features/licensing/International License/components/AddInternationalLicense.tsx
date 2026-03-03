@@ -22,6 +22,7 @@ import {
   useCheckInternationalEligibilityQuery,
 } from "../InternationalLicenseApiSlice";
 import LicenseSelectorCard from "../../Licenses/components/LicenseSelectorCard";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const issueInternationalSchema = z.object({
   notes: z.string().optional(),
@@ -35,6 +36,7 @@ export default function AddInternationalLicense(): JSX.Element {
   const initialId = searchParams.get("id")
     ? Number(searchParams.get("id"))
     : null;
+  useTitle("New International License");
 
   const [selectedLicense, setSelectedLicense] = useState<License | null>(null);
 

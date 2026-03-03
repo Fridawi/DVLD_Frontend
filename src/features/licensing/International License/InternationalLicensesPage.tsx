@@ -10,12 +10,14 @@ import type { SerializedError } from "../../../types/auth";
 import InternationalLicensesTable from "./components/InternationalLicensesTable";
 import { useGetAllInternationalLicensesQuery } from "./InternationalLicenseApiSlice";
 import type { FilterOption } from "../../../types/CommonTypes";
+import { useTitle } from "../../../hooks/useTitle";
 
 export default function InternationalLicensesPage() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
   const [filterParams, setFilterParams] = useState({ column: "", value: "" });
   const { user } = useAppSelector((state) => state.auth);
+  useTitle("International Licenses");
 
   const {
     data: pagedResult,

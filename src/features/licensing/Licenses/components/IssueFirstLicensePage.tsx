@@ -11,6 +11,7 @@ import { useGetLocalDrivingLicenseApplicationByIdQuery } from "../../../applicat
 import { useIssueFirstTimeLicenseMutation } from "../LicenseApiSlice";
 import { IssueReason, type LicenseCreate } from "../../../../types/licenses";
 import type { SerializedError } from "../../../../types/auth";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const issueLicenseSchema = z.object({
   notes: z.string().max(500, "Notes cannot exceed 500 characters"),
@@ -27,6 +28,11 @@ export default function IssueFirstLicensePage() {
   const [issueLicense, { isLoading: isIssuing }] =
     useIssueFirstTimeLicenseMutation();
 
+  useTitle(
+    localApp
+      ? `Issue License: #${localApp.localDrivingLicenseApplicationID}`
+      : "Issue First Time License",
+  );
   const {
     register,
     handleSubmit,

@@ -15,6 +15,7 @@ import { type JSX } from "react";
 import PageHeader from "../../../../components/common/PageHeader";
 import { useAppSelector } from "../../../../hooks/hooks";
 import { useGetTestTypeByIdQuery } from "../TestTypesApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 const TestField = ({
   icon: Icon,
@@ -59,6 +60,8 @@ export default function TestTypeDetails(): JSX.Element {
     isLoading,
     isError,
   } = useGetTestTypeByIdQuery(numericID);
+
+  useTitle(testType ? `Test Type: ${testType.title}` : "Test Type Details");
 
   if (isLoading) {
     return (

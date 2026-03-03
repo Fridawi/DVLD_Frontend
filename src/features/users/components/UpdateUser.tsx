@@ -10,6 +10,7 @@ import PageHeader from "../../../components/common/PageHeader";
 import type { SerializedError } from "../../../types/auth";
 import type { UserUpdate } from "../../../types/users";
 import { useAppSelector } from "../../../hooks/hooks";
+import { useTitle } from "../../../hooks/useTitle";
 
 const editUserSchema = z
   .object({
@@ -49,6 +50,8 @@ export default function UpdateUser() {
   });
 
   const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
+
+  useTitle(userData ? `Edit User: ${userData.userName}` : "Edit User");
 
   const {
     register,

@@ -15,6 +15,7 @@ import LicenseSelectorCard from "./LicenseSelectorCard";
 import type { License } from "../../../../types/licenses";
 import type { SerializedError } from "../../../../types/auth";
 import { useReplaceLicenseMutation } from "../LicenseApiSlice";
+import { useTitle } from "../../../../hooks/useTitle";
 
 type ReplacementType = "damaged" | "lost";
 
@@ -27,6 +28,12 @@ export default function ReplacementLicensePage(): JSX.Element {
 
   const [selectedLicense, setSelectedLicense] = useState<License | null>(null);
   const [replaceType, setReplaceType] = useState<ReplacementType>("damaged");
+
+  useTitle(
+    selectedLicense
+      ? `Replace (${replaceType}): #${selectedLicense.licenseID}`
+      : "License Replacement",
+  );
 
   const [replaceLicense, { isLoading: isReplacing }] =
     useReplaceLicenseMutation();
