@@ -108,13 +108,20 @@ export default function DriverHistoryPage() {
                   <div className="p-10 text-center">
                     <Loader2 className="animate-spin mx-auto text-slate-400" />
                   </div>
-                ) : (
+                ) : localLicenses.length > 0 ? (
                   <LicensesTable
                     licenses={localLicenses.map((l) => ({
                       ...l,
                       paidFees: 0,
                     }))}
                   />
+                ) : (
+                  <div className="p-12 text-center border-dashed border-2 border-gray-100 dark:border-gray-700 m-4 rounded-xl">
+                    <History className="size-12 text-gray-300 mx-auto mb-4" />
+                    <p className="text-gray-500 font-medium">
+                      No local license records found for this driver.
+                    </p>
+                  </div>
                 )}
               </div>
             </TabPanel>
