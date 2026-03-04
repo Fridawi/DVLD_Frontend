@@ -84,22 +84,27 @@ export default function DriverCard({ driverId }: DriverCardProps): JSX.Element {
       <div className="flex items-center justify-between px-2">
         <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
           <User size={16} className="text-blue-500" />
-          Driver Profile Information
+          Driver Profile
         </h3>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <Link
             to={`/people/${driver.personID}`}
-            className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+            className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
           >
-            <Eye size={14} /> View Person
+            <Eye size={13} className="shrink-0" />
+            <span>
+              <span className="hidden xs:inline">View </span>Person
+            </span>
           </Link>
 
-          <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+          <div className="h-3 w-px bg-slate-300 dark:bg-slate-600 shrink-0"></div>
+
           <button
             onClick={() => navigate(-1)}
-            className="text-[11px] font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-slate-600 pb-0.5"
+            className="text-[10px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
           >
-            <ArrowLeft size={14} /> Back
+            <ArrowLeft size={13} className="shrink-0" />
+            Back
           </button>
         </div>
       </div>

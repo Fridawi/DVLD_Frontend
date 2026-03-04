@@ -111,20 +111,24 @@ export default function TestAppointmentDetails(): JSX.Element {
         <div className="flex items-center justify-between px-2">
           <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
             <ClipboardList size={16} className="text-blue-500" />
-            Appointment Information
+            Appointment
           </h3>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
             <button
               onClick={() =>
                 navigate(
                   `/applications/local/${appointment.localDrivingLicenseApplicationID}`,
                 )
               }
-              className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+              className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight"
             >
-              <Eye size={12} /> View Local App
+              <Eye size={13} className="shrink-0" />
+              <span>
+                View <span className="hidden sm:inline">Local App</span>
+              </span>
             </button>
+
             {!appointment.isLocked && (
               <button
                 onClick={() =>
@@ -132,18 +136,23 @@ export default function TestAppointmentDetails(): JSX.Element {
                     `/tests/appointments/scheduleTest/${appointment.localDrivingLicenseApplicationID}/${testTypeID}/${appointment.testAppointmentID}`,
                   )
                 }
-                className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+                className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight"
               >
-                <Edit size={14} /> Reschedule
+                <Edit size={13} className="shrink-0" />
+                <span>
+                  <span className="hidden sm:inline">Re</span>schedule
+                </span>
               </button>
             )}
 
-            <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+            <div className="h-3 w-px bg-slate-300 dark:bg-slate-600 shrink-0"></div>
+
             <button
               onClick={() => navigate(-1)}
-              className="text-[11px] font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-slate-600 pb-0.5"
+              className="text-[10px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-1 transition-colors uppercase tracking-tight"
             >
-              <ArrowLeft size={14} /> Back
+              <ArrowLeft size={13} className="shrink-0" />
+              Back
             </button>
           </div>
         </div>

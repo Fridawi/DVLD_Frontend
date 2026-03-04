@@ -9,6 +9,7 @@ import {
   Unlock,
   FilePlus2,
   UserPlus,
+  Eye,
 } from "lucide-react";
 
 import { useGetDriversQuery } from "../drivers/DriverApiSlice";
@@ -147,9 +148,10 @@ export default function Dashboard() {
             </h3>
             <button
               onClick={() => navigate("/applications/local")}
-              className="text-[10px] font-bold text-blue-600 hover:underline"
+              className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
             >
-              VIEW ALL
+              <Eye size={13} className="shrink-0" />
+              <span>VIEW ALL</span>
             </button>
           </div>
           <div className="overflow-x-auto flex-1">
@@ -199,9 +201,10 @@ export default function Dashboard() {
             </h3>
             <button
               onClick={() => navigate("/tests/appointments")}
-              className="text-[10px] font-bold text-amber-600 hover:underline"
+              className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
             >
-              SCHEDULE
+              <Eye size={13} className="shrink-0" />
+              <span>SCHEDULES</span>
             </button>
           </div>
           <div className="overflow-x-auto flex-1">

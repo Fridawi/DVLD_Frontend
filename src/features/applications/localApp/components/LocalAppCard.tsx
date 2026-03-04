@@ -16,7 +16,6 @@ interface LocalAppCardProps {
   app: LocalDrivingLicenseApplication;
 }
 
-// مكون الحقل الصغير الموحد
 const LocalField = ({
   icon: Icon,
   label,
@@ -55,13 +54,13 @@ export default function LocalAppCard({ app }: LocalAppCardProps): JSX.Element {
 
   return (
     <div className="w-full flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-2 duration-400">
-      {/* Header & Actions */}
       <div className="flex items-center justify-between px-2">
         <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
-          <Award size={16} className="text-blue-500" /> Driving License Details
+          <Award size={16} className="text-blue-500" />
+          Local App Details
         </h3>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           {user?.role === "Admin" && (
             <button
               onClick={() =>
@@ -69,24 +68,30 @@ export default function LocalAppCard({ app }: LocalAppCardProps): JSX.Element {
                   `/applications/local/edit/${app.localDrivingLicenseApplicationID}`,
                 )
               }
-              className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+              className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
             >
-              <Edit size={14} /> Edit Local App
+              <Edit size={13} className="shrink-0" />
+              <span>
+                Edit <span className="hidden xs:inline">Local App</span>
+              </span>
             </button>
           )}
-          <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+
+          {user?.role === "Admin" && (
+            <div className="h-3 w-px bg-slate-300 dark:bg-slate-600 shrink-0"></div>
+          )}
+
           <button
             onClick={() => navigate(-1)}
-            className="text-[11px] font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-slate-600 pb-0.5"
+            className="text-[10px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
           >
-            <ArrowLeft size={14} /> Back
+            <ArrowLeft size={13} className="shrink-0" />
+            Back
           </button>
         </div>
       </div>
 
-      {/* Main Content Card */}
       <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-        {/* Quick Info Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-100 dark:border-slate-700">
           <div className="flex items-center gap-4">
             <div className="flex flex-col">
@@ -124,7 +129,6 @@ export default function LocalAppCard({ app }: LocalAppCardProps): JSX.Element {
           </div>
         </div>
 
-        {/* Detailed Fields Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-6 gap-x-8">
           <LocalField
             icon={Award}

@@ -182,27 +182,38 @@ export default function ReplacementLicensePage(): JSX.Element {
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900/20 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between gap-3 p-4 bg-gray-50 dark:bg-gray-900/20 border-t border-gray-200 dark:border-gray-700">
             <button
               onClick={() => navigate(-1)}
-              className="text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg text-sm font-medium px-5 py-2.5 inline-flex items-center dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 me-2" /> Cancel
+              <ArrowLeft className="w-4 h-4 me-1" />
+              <span className="xs:inline">Cancel</span>
             </button>
 
             <button
               onClick={handleReplacement}
               disabled={!canReplace || isReplacing}
-              className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-8 py-2.5 inline-flex items-center disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md active:scale-95"
+              className="inline-flex items-center px-4 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm active:scale-95"
             >
               {isReplacing ? (
                 <Loader2 className="w-4 h-4 me-2 animate-spin" />
               ) : (
                 <RefreshCcw className="w-4 h-4 me-2" />
               )}
-              {isReplacing
-                ? "Processing..."
-                : `Issue Replacement for ${replaceType === "damaged" ? "Damaged" : "Lost"}`}
+
+              <span>
+                {isReplacing ? (
+                  "Processing..."
+                ) : (
+                  <>
+                    <span className="hidden sm:inline">
+                      Issue Replacement for{" "}
+                    </span>
+                    <span className="capitalize">{replaceType}</span>
+                  </>
+                )}
+              </span>
             </button>
           </div>
         </div>

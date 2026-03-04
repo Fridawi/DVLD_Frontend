@@ -6,7 +6,6 @@ import {
   Unlock,
   Loader2,
   AlertCircle,
-  Gavel,
   ShieldCheck,
 } from "lucide-react";
 
@@ -113,10 +112,6 @@ export default function ReleaseLicensePage(): JSX.Element {
 
             {detentionData && (
               <div className="space-y-4">
-                <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-2">
-                  <Gavel size={16} className="text-rose-500" />
-                  Detention Information & Fees
-                </h3>
                 <DetainedInfoCard detention={detentionData} />
               </div>
             )}

@@ -142,26 +142,38 @@ export default function RenewLicensePage(): JSX.Element {
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900/20 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between gap-3 p-4 bg-gray-50 dark:bg-gray-900/20 border-t border-gray-200 dark:border-gray-700">
             <button
               onClick={() => navigate(-1)}
               type="button"
-              className="text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg text-sm font-medium px-5 py-2.5 inline-flex items-center dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 me-2" /> Cancel
+              <ArrowLeft className="w-4 h-4 me-1" />
+              <span className="xs:inline">Cancel</span>
             </button>
 
             <button
               onClick={handleSubmit(onSubmit)}
               disabled={!canRenew || isRenewing}
-              className="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm px-8 py-2.5 inline-flex items-center disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md active:scale-95"
+              className="inline-flex items-center px-4 py-2.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm active:scale-95"
             >
               {isRenewing ? (
                 <Loader2 className="w-4 h-4 me-2 animate-spin" />
               ) : (
                 <Save className="w-4 h-4 me-2" />
               )}
-              {isRenewing ? "Processing..." : "Confirm & Issue Renewed License"}
+
+              <span>
+                {isRenewing ? (
+                  "Processing..."
+                ) : (
+                  <>
+                    <span className="hidden sm:inline">Confirm & </span>
+                    Issue Renewed
+                    <span className="hidden sm:inline"> License</span>
+                  </>
+                )}
+              </span>
             </button>
           </div>
         </div>

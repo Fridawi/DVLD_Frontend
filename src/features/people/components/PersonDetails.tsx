@@ -98,7 +98,7 @@ export default function PersonDetails(): JSX.Element {
   return (
     <div className="w-full flex flex-col gap-6 animate-in fade-in duration-300 pb-10">
       <PageHeader
-        title="Identity Profile"
+        title="Person Profile"
         breadcrumbs={[
           { label: "People", path: "/people" },
           { label: person.fullName },
@@ -110,7 +110,7 @@ export default function PersonDetails(): JSX.Element {
           <div className="flex items-center gap-2">
             <Contact size={16} className="text-blue-500" />
             <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
-              Registry Information
+              Person Info
             </h3>
           </div>
           <div className="flex items-center gap-4">
@@ -118,7 +118,7 @@ export default function PersonDetails(): JSX.Element {
               onClick={() => navigate(`/people/edit/${person.personID}`)}
               className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
             >
-              <Edit size={14} /> Edit Identity
+              <Edit size={14} /> Edit
             </button>
             <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
             <button

@@ -112,7 +112,7 @@ export default function UserDetails(): JSX.Element {
   return (
     <div className="w-full flex flex-col gap-6 animate-in fade-in duration-300 pb-10">
       <PageHeader
-        title="System User Profile"
+        title="User Profile"
         breadcrumbs={[
           { label: "Users", path: "/users" },
           { label: user.userName },
@@ -127,19 +127,27 @@ export default function UserDetails(): JSX.Element {
               Account Management
             </h3>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            {/* زر التعديل: حجم خط 12px مع اختصار ذكي */}
             <button
               onClick={() => navigate(`/users/edit/${user.userID}`)}
-              className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+              className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
             >
-              <Edit size={14} /> Update Account
+              <Edit size={14} className="shrink-0" />
+              <span>
+                Update <span className="hidden xs:inline">Account</span>
+              </span>
             </button>
-            <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+
+            <div className="h-3 w-px bg-slate-300 dark:bg-slate-600 shrink-0"></div>
+
+            {/* زر الإغلاق: حجم خط 12px */}
             <button
               onClick={() => navigate(-1)}
-              className="text-[11px] font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-slate-600 pb-0.5"
+              className="text-[10px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
             >
-              <ArrowLeft size={14} /> Close
+              <ArrowLeft size={14} className="shrink-0" />
+              Close
             </button>
           </div>
         </div>
@@ -192,14 +200,14 @@ export default function UserDetails(): JSX.Element {
               <div className="flex items-center gap-2">
                 <Contact size={16} className="text-blue-500" />
                 <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
-                  Personal Identity Record
+                  Person Info
                 </h3>
               </div>
               <Link
                 to={`/people/edit/${person.personID}`}
-                className="text-[10px] font-bold text-blue-600 uppercase tracking-widest hover:underline"
+                className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
               >
-                Modify Original Record
+                <Edit size={14} /> <span>edit person</span>
               </Link>
             </div>
 

@@ -103,7 +103,7 @@ export default function ApplicationTypeDetails(): JSX.Element {
       <div className="w-full flex flex-col gap-3">
         <div className="flex items-center justify-between px-2">
           <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
-            <Info size={16} className="text-blue-500" /> Configuration Details
+            <Info size={16} className="text-blue-500" /> App Type Info
           </h3>
 
           <div className="flex items-center gap-4">
@@ -116,7 +116,7 @@ export default function ApplicationTypeDetails(): JSX.Element {
                 }
                 className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
               >
-                <Edit size={14} /> Edit Type
+                <Edit size={14} /> Edit
               </button>
             )}
             <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>

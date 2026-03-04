@@ -45,8 +45,8 @@ export default function AddEditLocalApp(): JSX.Element {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const isEditMode = Boolean(id);
-  console.log(id);
   const [step, setStep] = useState<1 | 2>(isEditMode ? 2 : 1);
+
   useTitle(isEditMode ? "Update Local Application" : "New Local Application");
 
   const { data: localAppData, isLoading: isLoadingLocal } =
@@ -110,7 +110,7 @@ export default function AddEditLocalApp(): JSX.Element {
   const inputClass =
     "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-colors disabled:opacity-50";
   const labelClass =
-    "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+    "block mb-2 text-sm font-medium text-gray-900 dark:text-white flex items-center gap-1.5";
 
   const goNext = async () => {
     const isValid = await trigger("personID");
@@ -153,13 +153,11 @@ export default function AddEditLocalApp(): JSX.Element {
     <div className="w-full space-y-6">
       <PageHeader
         title={
-          isEditMode
-            ? "Update Local Application"
-            : "New Local Driving License Application"
+          isEditMode ? "Update Local Application" : "New Local Application"
         }
         breadcrumbs={[
           { label: "Applications", path: "/applications/local" },
-          { label: isEditMode ? "Update" : "New Application" },
+          { label: isEditMode ? "Update" : "New" },
         ]}
       />
 
@@ -173,7 +171,8 @@ export default function AddEditLocalApp(): JSX.Element {
             >
               1
             </span>
-            Person Selection <ChevronRight className="w-4 h-4 ms-2" />
+            <span className="hidden xs:inline">Person</span> Selection{" "}
+            <ChevronRight className="w-4 h-4 ms-2" />
           </li>
           <li
             className={`flex items-center ${step === 2 ? "text-blue-600" : ""}`}
@@ -183,33 +182,36 @@ export default function AddEditLocalApp(): JSX.Element {
             >
               2
             </span>
-            Application Details
+            Details
           </li>
         </ol>
       )}
 
-      <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
         <div className="p-6">
           {step === 1 && !isEditMode && (
             <div className="space-y-6">
-              <div className="p-4 mb-4 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:bg-gray-800 dark:text-blue-400 rounded-lg flex items-center gap-3">
-                <Info size={18} />
+              <div className="p-4 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:bg-gray-900/40 dark:text-blue-400 rounded-lg flex items-center gap-3">
+                <Info size={18} className="shrink-0" />
                 <span className="text-sm font-medium">
                   Select the applicant person from the list below.
                 </span>
               </div>
-              <PersonSelectorCard
-                onPersonSelected={(id) =>
-                  id && setValue("personID", id, { shouldValidate: true })
-                }
-              />
+
+              <div className="relative -mx-6 bg-gray-50/30 dark:bg-gray-900/10 border-y border-gray-100 dark:border-gray-700 p-6">
+                <PersonSelectorCard
+                  onPersonSelected={(id) =>
+                    id && setValue("personID", id, { shouldValidate: true })
+                  }
+                />
+              </div>
+
               <div className="flex justify-end pt-5">
                 <button
                   onClick={goNext}
-                  className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
+                  className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-6 py-2.5 inline-flex items-center transition-all shadow-md active:scale-95"
                 >
-                  Next: Application Details{" "}
-                  <ChevronRight className="w-4 h-4 ms-2" />
+                  Next Step <ChevronRight className="w-4 h-4 ms-2" />
                 </button>
               </div>
             </div>
@@ -220,7 +222,7 @@ export default function AddEditLocalApp(): JSX.Element {
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
                   <label className={labelClass}>
-                    <FileText className="inline w-4 h-4 me-1" /> Application
+                    <FileText className="w-4 h-4 text-gray-400" /> Application
                     Type
                   </label>
                   <select
@@ -242,7 +244,7 @@ export default function AddEditLocalApp(): JSX.Element {
 
                 <div>
                   <label className={labelClass}>
-                    <Award className="inline w-4 h-4 me-1" /> License Class
+                    <Award className="w-4 h-4 text-gray-400" /> License Class
                   </label>
                   <select
                     {...register("licenseClassID", { valueAsNumber: true })}
@@ -256,34 +258,28 @@ export default function AddEditLocalApp(): JSX.Element {
                     ))}
                   </select>
                   {errors.licenseClassID && (
-                    <p className="mt-2 text-sm text-red-600">
+                    <p className="mt-1.5 text-xs text-red-600">
                       {errors.licenseClassID.message}
                     </p>
                   )}
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-4 border-t border-gray-200 dark:border-gray-600">
+              <div className="flex items-center justify-between gap-3 pt-6 border-t border-gray-100 dark:border-gray-700">
                 <button
                   onClick={() => (isEditMode ? navigate(-1) : setStep(1))}
                   type="button"
-                  className="text-gray-500 bg-white border border-gray-200 rounded-lg text-sm font-medium px-5 py-2.5 inline-flex items-center"
+                  className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
                 >
-                  <ArrowLeft className="w-4 h-4 me-2" />{" "}
-                  {isEditMode ? "Back" : "Previous"}
+                  <ArrowLeft className="w-4 h-4 me-1" />
+                  <span>{isEditMode ? "Cancel" : "Back"}</span>
                 </button>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => navigate(-1)}
-                    type="button"
-                    className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg"
-                  >
-                    Cancel
-                  </button>
+
+                <div className="flex items-center gap-2">
                   <button
                     onClick={handleSubmit(onSubmit)}
                     disabled={isAdding || isUpdating}
-                    className="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center disabled:opacity-50"
+                    className="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center shadow-md transition-all active:scale-95 disabled:opacity-50"
                   >
                     {isAdding || isUpdating ? (
                       <Loader2 className="w-4 h-4 me-2 animate-spin" />
@@ -292,11 +288,14 @@ export default function AddEditLocalApp(): JSX.Element {
                     ) : (
                       <Save className="w-4 h-4 me-2" />
                     )}
-                    {isAdding || isUpdating
-                      ? "Saving..."
-                      : isEditMode
-                        ? "Update Application"
-                        : "Create Application"}
+
+                    <span className="whitespace-nowrap">
+                      {isAdding || isUpdating
+                        ? "Saving..."
+                        : isEditMode
+                          ? "Update"
+                          : "Create App"}
+                    </span>
                   </button>
                 </div>
               </div>

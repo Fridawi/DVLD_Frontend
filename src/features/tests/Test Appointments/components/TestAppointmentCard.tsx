@@ -54,6 +54,12 @@ interface TestAppointmentCardProps {
   testTypeID?: string | number;
 }
 
+const testTypeMap: Record<string, number> = {
+  "Vision Test": 1,
+  "Written Test": 2,
+  "Practical Test": 3, // أو "Street Test" حسب التسمية لديك
+};
+
 export default function TestAppointmentCard({
   appointmentId,
   testTypeID,
@@ -89,7 +95,6 @@ export default function TestAppointmentCard({
         <h3 className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
           <ClipboardList size={14} className="text-blue-500" /> Appointment Info
         </h3>
-
         <div className="flex items-center gap-3">
           <button
             onClick={() =>
@@ -97,25 +102,33 @@ export default function TestAppointmentCard({
                 `/applications/local/${appointment.localDrivingLicenseApplicationID}`,
               )
             }
-            className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+            className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest"
           >
-            <Eye size={12} /> View Local App
+            <Eye size={12} />
+            Local App
           </button>
 
-          <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+          {(() => {
+            const resolvedTestTypeID =
+              testTypeMap[appointment.testTypeName] || testTypeID;
 
-          {!appointment.isLocked && testTypeID && (
-            <button
-              onClick={() =>
-                navigate(
-                  `/tests/appointments/scheduleTest/${appointment.localDrivingLicenseApplicationID}/${testTypeID}/${appointment.testAppointmentID}`,
-                )
-              }
-              className="text-[10px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tighter"
-            >
-              <Edit size={12} /> Edit Appointment
-            </button>
-          )}
+            return !appointment.isLocked && resolvedTestTypeID ? (
+              <>
+                <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+                <button
+                  onClick={() =>
+                    navigate(
+                      `/tests/appointments/scheduleTest/${appointment.localDrivingLicenseApplicationID}/${resolvedTestTypeID}/${appointment.testAppointmentID}`,
+                    )
+                  }
+                  className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight"
+                >
+                  <Edit size={12} />
+                  Edit
+                </button>
+              </>
+            ) : null;
+          })()}
         </div>
       </div>
 

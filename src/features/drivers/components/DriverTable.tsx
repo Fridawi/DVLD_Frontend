@@ -93,7 +93,7 @@ export default function DriverTable({ drivers }: Props) {
                               } group flex w-full items-center rounded-md px-2 py-2 text-sm transition-colors`}
                             >
                               <User className="mr-2 h-4 w-4" />
-                              Show Person Info
+                              Show Driver Info
                             </button>
                           )}
                         </MenuItem>

@@ -175,25 +175,37 @@ export default function AddEditTest() {
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+          <div className="flex items-center justify-end gap-3 pt-5 border-t border-slate-200 dark:border-slate-700">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="px-4 py-2 text-xs font-black text-slate-700 hover:text-black dark:text-slate-300 dark:hover:text-white flex items-center gap-1 transition-colors"
+              className="px-3 py-2 text-[11px] font-black text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center gap-1.5 transition-colors uppercase tracking-tight shrink-0"
             >
-              <ArrowLeft size={14} /> CANCEL
+              <ArrowLeft size={14} />
+              <span className="hidden xs:inline">Cancel</span>
             </button>
+
             <button
               type="submit"
               disabled={isAdding || isUpdating}
-              className="px-8 py-2.5 text-xs font-black text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md flex items-center gap-2 disabled:opacity-50 transition-all active:scale-95 uppercase tracking-wider"
+              className="px-6 sm:px-8 py-2.5 text-[11px] font-black text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md shadow-blue-100 dark:shadow-none flex items-center gap-2 disabled:opacity-50 transition-all active:scale-95 uppercase tracking-wider shrink-0"
             >
               {isAdding || isUpdating ? (
                 <Loader2 size={14} className="animate-spin" />
               ) : (
                 <Save size={14} />
               )}
-              {isEditMode ? "Update Result" : "Save Result"}
+
+              <span className="whitespace-nowrap">
+                {isAdding || isUpdating ? (
+                  "Saving..."
+                ) : (
+                  <>
+                    {isEditMode ? "Update" : "Save"}
+                    <span className="hidden sm:inline ml-1">Result</span>
+                  </>
+                )}
+              </span>
             </button>
           </div>
         </form>

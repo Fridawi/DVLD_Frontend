@@ -172,26 +172,38 @@ export default function AddInternationalLicense(): JSX.Element {
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900/20 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-end gap-3 p-6 pt-0 border-t-0 bg-white dark:bg-slate-800">
             <button
-              onClick={() => navigate(-1)}
               type="button"
-              className="text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg text-sm font-medium px-5 py-2.5 inline-flex items-center dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+              onClick={() => navigate(-1)}
+              className="px-5 py-2.5 text-[13px] font-bold text-slate-600 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 transition-all active:scale-95 shrink-0"
             >
-              <ArrowLeft className="w-4 h-4 me-2" /> Back
+              <ArrowLeft size={16} />
+              <span>Back</span>
             </button>
 
             <button
               onClick={handleSubmit(onSubmit)}
               disabled={!canIssue || isIssuing}
-              className="text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-8 py-2.5 inline-flex items-center disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md active:scale-95"
+              className="px-4 sm:px-8 py-2.5 text-[13px] font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md shadow-blue-100 dark:shadow-none flex items-center gap-2 disabled:opacity-70 transition-all active:scale-95 shrink-0"
             >
               {isIssuing ? (
-                <Loader2 className="w-4 h-4 me-2 animate-spin" />
+                <Loader2 size={16} className="animate-spin" />
               ) : (
-                <Save className="w-4 h-4 me-2" />
+                <Save size={16} />
               )}
-              {isIssuing ? "Processing..." : "Issue International License"}
+              <span className="whitespace-nowrap">
+                {isIssuing ? (
+                  "Processing..."
+                ) : (
+                  <>
+                    Issue{" "}
+                    <span className="hidden sm:inline ml-1 text-[12px] opacity-90 font-medium tracking-tight">
+                      International License
+                    </span>
+                  </>
+                )}
+              </span>
             </button>
           </div>
         </div>

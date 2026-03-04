@@ -6,9 +6,10 @@ import * as z from "zod";
 import {
   Calendar as CalendarIcon,
   Save,
-  DollarSign,
   AlertCircle,
   XCircle,
+  ArrowLeft,
+  Loader2,
 } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -215,56 +216,40 @@ export default function ScheduleTestPage() {
             </div>
           )}
 
-          <div className="p-6 bg-gray-50 dark:bg-gray-800/50 border-t dark:border-gray-700 flex gap-3">
-            <button
-              type="submit"
-              disabled={isAdding || isUpdating || isLocked}
-              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg flex items-center gap-2 transition-colors disabled:opacity-50"
-            >
-              {isAdding || isUpdating ? (
-                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-              ) : (
-                <Save className="w-4 h-4" />
-              )}
-              {isEditMode ? "Update" : "Save Appointment"}
-            </button>
+          <div className="p-5 bg-gray-50/50 dark:bg-gray-800/50 border-t dark:border-gray-700 flex items-center justify-between gap-3">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="px-6 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-bold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600"
+              className="flex items-center text-sm font-semibold text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors shrink-0"
             >
+              <ArrowLeft className="w-4 h-4 me-1.5" />
               Back
             </button>
-          </div>
-        </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden h-fit">
-          <div className="p-4 bg-gray-50 dark:bg-gray-700 border-b dark:border-gray-600">
-            <h3 className="font-bold flex items-center gap-2 dark:text-white">
-              <DollarSign className="w-4 h-4 text-green-600" /> Payment Details
-            </h3>
-          </div>
-          <div className="p-5 space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Test Fees:</span>
-              <span className="font-semibold dark:text-white">
-                ${testType?.fees || 0}
+            <button
+              type="submit"
+              disabled={isAdding || isUpdating || isLocked}
+              className="inline-flex items-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl shadow-md transition-all active:scale-95 disabled:opacity-50 shrink-0"
+            >
+              {isAdding || isUpdating ? (
+                <Loader2 className="w-4 h-4 me-2 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4 me-2" />
+              )}
+
+              <span className="whitespace-nowrap">
+                {isAdding || isUpdating ? (
+                  "Saving..."
+                ) : (
+                  <>
+                    {isEditMode ? "Update" : "Save"}
+                    <span className="hidden sm:inline ms-1 text-blue-100/90 font-medium">
+                      Appointment
+                    </span>
+                  </>
+                )}
               </span>
-            </div>
-            {isRetake && (
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Retake Application:</span>
-                <span className="font-semibold dark:text-white">
-                  ${retakeFees}
-                </span>
-              </div>
-            )}
-            <div className="pt-3 border-t dark:border-gray-700 flex justify-between items-center">
-              <span className="font-bold dark:text-white">Total:</span>
-              <span className="text-2xl font-black text-blue-600">
-                ${totalFees}
-              </span>
-            </div>
+            </button>
           </div>
         </div>
       </form>

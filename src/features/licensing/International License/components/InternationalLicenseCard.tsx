@@ -65,7 +65,7 @@ export default function InternationalLicenseCard({
       <div className="flex items-center justify-between px-2">
         <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
           <Globe size={16} className="text-indigo-500" />
-          International License Information
+          International License Info
         </h3>
 
         <button

@@ -106,8 +106,8 @@ export default function TestTypeDetails(): JSX.Element {
       <div className="w-full flex flex-col gap-3">
         <div className="flex items-center justify-between px-2">
           <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
-            <ClipboardCheck size={16} className="text-blue-500" /> Test
-            Configuration
+            <ClipboardCheck size={16} className="text-blue-500" />
+            Test Type
           </h3>
 
           <div className="flex items-center gap-4">

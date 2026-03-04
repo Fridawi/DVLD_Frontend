@@ -67,14 +67,15 @@ export default function LicenseInfoCard({
       <div className="flex items-center justify-between px-2">
         <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
           <IdCard size={16} className="text-blue-500" />
-          Driver License Information
+          Driver License Info
         </h3>
 
         <button
           onClick={() => navigate(-1)}
-          className="text-[11px] font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-slate-600 pb-0.5"
+          className="text-[10px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
         >
-          <ArrowLeft size={14} /> Back
+          <ArrowLeft size={13} className="shrink-0" />
+          Back
         </button>
       </div>
 

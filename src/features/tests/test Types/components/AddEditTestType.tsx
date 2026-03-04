@@ -177,32 +177,42 @@ export default function AddEditTestTypeForm() {
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-6 border-t border-gray-100 dark:border-gray-700">
+          <div className="flex items-center justify-end gap-3 pt-6 border-t border-gray-100 dark:border-gray-700">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2 transition"
+              className="px-4 py-2.5 text-sm font-semibold text-gray-600 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-2 transition-all active:scale-95 shrink-0"
             >
-              <ArrowLeft className="size-4" /> Cancel
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden xs:inline">Cancel</span>
             </button>
+
             <button
               type="submit"
               disabled={isAdding || isUpdating}
-              className="px-8 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm flex items-center gap-2 disabled:opacity-70 transition-all active:scale-95"
+              className="px-6 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md shadow-blue-100 dark:shadow-none flex items-center gap-2 disabled:opacity-70 transition-all active:scale-95 shrink-0"
             >
               {isAdding || isUpdating ? (
-                <Loader2 className="size-4 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
               ) : isEditMode ? (
-                <Edit3 className="size-4" />
+                <Edit3 className="w-4 h-4" />
               ) : (
-                <Save className="size-4" />
+                <Save className="w-4 h-4" />
               )}
 
-              {isAdding || isUpdating
-                ? "Saving..."
-                : isEditMode
-                  ? "Update Test Type"
-                  : "Save Test Type"}
+              <span className="whitespace-nowrap">
+                {isAdding || isUpdating ? (
+                  "Saving..."
+                ) : isEditMode ? (
+                  <>
+                    Update <span className="hidden sm:inline">Test Type</span>
+                  </>
+                ) : (
+                  <>
+                    Save <span className="hidden sm:inline">Test Type</span>
+                  </>
+                )}
+              </span>
             </button>
           </div>
         </form>

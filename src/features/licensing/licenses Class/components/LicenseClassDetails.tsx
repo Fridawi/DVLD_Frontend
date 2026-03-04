@@ -112,11 +112,10 @@ export default function LicenseClassDetails(): JSX.Element {
       <div className="w-full flex flex-col gap-3">
         <div className="flex items-center justify-between px-2">
           <h3 className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest flex items-center gap-2">
-            <ShieldCheck size={16} className="text-blue-500" /> License Category
-            Info
+            <ShieldCheck size={16} className="text-blue-500" /> License Info
           </h3>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
             {user?.role === "Admin" && (
               <button
                 onClick={() =>
@@ -124,17 +123,24 @@ export default function LicenseClassDetails(): JSX.Element {
                     `/licenses/classes/edit/${licenseClass.licenseClassID}`,
                   )
                 }
-                className="text-[11px] font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-blue-600 pb-0.5"
+                className="text-[10px] sm:text-[11px] font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
               >
-                <Edit size={14} /> Edit Class
+                <Edit size={13} className="shrink-0" />
+                <span>
+                  Edit <span className="hidden xs:inline">License Class</span>
+                </span>
               </button>
             )}
-            <div className="h-3 w-px bg-slate-300 dark:bg-slate-600"></div>
+
+            {user?.role === "Admin" && (
+              <div className="h-3 w-px bg-slate-300 dark:bg-slate-600 shrink-0"></div>
+            )}
             <button
               onClick={() => navigate(-1)}
-              className="text-[11px] font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 flex items-center gap-1.5 transition-colors uppercase tracking-widest border-b border-transparent hover:border-slate-600 pb-0.5"
+              className="text-[10px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-700 dark:text-slate-400 flex items-center gap-1 transition-colors uppercase tracking-tight sm:tracking-widest"
             >
-              <ArrowLeft size={14} /> Back
+              <ArrowLeft size={13} className="shrink-0" />
+              Back
             </button>
           </div>
         </div>

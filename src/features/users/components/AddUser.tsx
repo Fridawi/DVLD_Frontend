@@ -227,32 +227,36 @@ export default function AddUser(): JSX.Element {
                 </label>
               </div>
 
-              <div className="flex items-center justify-between p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
+              <div className="flex items-center justify-between gap-3 p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                 <button
                   onClick={() => setStep(1)}
                   type="button"
-                  className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 inline-flex items-center"
+                  className="flex items-center text-sm font-medium text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white transition-colors"
                 >
-                  <ArrowLeft className="w-4 h-4 me-2" /> Previous
+                  <ArrowLeft className="w-4 h-4 me-1" /> Previous
                 </button>
-                <div className="flex gap-2">
+
+                <div className="flex items-center gap-2">
                   <button
                     onClick={() => navigate(-1)}
                     type="button"
-                    className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                   >
                     Cancel
                   </button>
+
                   <button
                     onClick={handleSubmit(onSubmit)}
                     disabled={isAdding}
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 disabled:opacity-50 transition-all"
                   >
                     {isAdding ? (
                       "Saving..."
                     ) : (
                       <>
-                        <Save className="w-4 h-4 me-2" /> Save User
+                        <Save className="w-4 h-4 me-2" />{" "}
+                        <span className="hidden xs:inline">Save User</span>
+                        <span className="xs:hidden">Save</span>
                       </>
                     )}
                   </button>

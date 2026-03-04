@@ -64,68 +64,75 @@ export default function LocalAppTestAppointmentsPage() {
   }
 
   return (
-    <div className="w-full space-y-8 p-6 lg:p-10 bg-gray-50/30 dark:bg-transparent min-h-screen">
+    <div className="w-full space-y-6 p-4 lg:p-8 bg-gray-50/30 dark:bg-transparent min-h-screen">
       <PageHeader
-        title={`${testType?.title || "Test"} Appointments Management`}
+        title={`${testType?.title || "Test"} Appointments`}
         breadcrumbs={[
           { label: "Local Applications", path: "/applications/local" },
           { label: "Appointments History" },
         ]}
       />
 
-      <div className="flex flex-col gap-8 w-full">
-        <div className="w-full transform transition-all">
+      <div className="flex flex-col gap-6 w-full">
+        <div className="w-full">
           <LocalAppCard app={localApp!} />
         </div>
-        <div className="w-full transform transition-all">
+        <div className="w-full">
           <ApplicationCard applicationId={localApp!.applicationID} />
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden w-full">
-        <div className="p-8 border-b border-gray-100 dark:border-gray-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white dark:bg-gray-800">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden w-full">
+        <div className="p-5 border-b border-gray-100 dark:border-gray-700 flex flex-row justify-between items-center gap-4">
           <div>
-            <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white flex items-center gap-3">
-              <Calendar className="w-7 h-7 text-blue-600" />
-              Test Appointments History
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-blue-600" />
+              <span className="hidden xs:inline">Test</span> Appointments
             </h3>
-            <p className="text-base text-gray-500 dark:text-gray-400 mt-2">
-              Manage and view scheduling records for this specific test type.
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block">
+              Manage scheduling records for this test.
             </p>
           </div>
 
           <button
             onClick={handleAddNewAppointment}
-            className="flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl transition-all shadow-xl shadow-blue-200 dark:shadow-none active:scale-95 text-lg"
+            title="Add New Appointment"
+            className="flex items-center justify-center gap-1.5 px-3 py-2 sm:px-5 sm:py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all shadow-md active:scale-95 text-sm shrink-0"
           >
-            <Plus className="w-6 h-6" />
-            Add New Appointment
+            <Plus className="w-4 h-4 shrink-0" />
+
+            <span className="inline-block">
+              Add
+              <span className="hidden sm:inline-block ml-1">Appointment</span>
+            </span>
           </button>
         </div>
 
-        <div className="p-4">
+        <div className="p-2 sm:p-4">
           {appointments.length > 0 ? (
-            <TestAppointmentsTable appointments={appointments} />
+            <div className="overflow-x-auto">
+              <TestAppointmentsTable appointments={appointments} />
+            </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-24 text-gray-400">
-              <div className="p-6 rounded-full bg-gray-50 dark:bg-gray-900 mb-4">
-                <Info size={60} className="opacity-20" />
+            <div className="flex flex-col items-center justify-center py-16 text-gray-400">
+              <div className="p-4 rounded-full bg-gray-50 dark:bg-gray-900/50 mb-3">
+                <Info size={40} className="opacity-20" />
               </div>
-              <p className="text-xl font-medium">
-                No appointments found for this test type.
+              <p className="text-lg font-medium text-gray-500">
+                No appointments found.
               </p>
-              <p className="text-sm mt-1 text-gray-400">
+              <p className="text-xs mt-1 text-gray-400 text-center px-4">
                 Click the button above to schedule the first one.
               </p>
             </div>
           )}
         </div>
 
-        <div className="px-8 py-6 bg-gray-50 dark:bg-gray-900/50 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
-          <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <div className="px-6 py-4 bg-gray-50/50 dark:bg-gray-900/30 border-t border-gray-100 dark:border-gray-700 flex justify-end">
+          <div className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider">
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
-            Total Records:
-            <span className="text-blue-600 dark:text-blue-400 text-lg ml-1">
+            Total:
+            <span className="text-blue-600 dark:text-blue-400 text-sm">
               {appointments.length}
             </span>
           </div>
