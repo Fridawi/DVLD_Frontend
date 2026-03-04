@@ -73,30 +73,42 @@ export default function DriverHistoryPage() {
 
       <div className="animate-in fade-in slide-in-from-top-4 duration-500">
         <TabGroup>
-          <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
-            <div className="flex items-center gap-2">
-              <History className="text-blue-600 size-5" />
-              <h2 className="text-lg font-bold dark:text-white">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                <History className="text-blue-600 dark:text-blue-400 size-6" />
+              </div>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                 Driver Records
               </h2>
             </div>
 
-            <TabList className="flex gap-4">
+            <TabList className="flex bg-gray-100 dark:bg-gray-900/50 p-1 rounded-xl w-full sm:w-auto">
               <Tab
                 className={({ selected }) => `
-                  px-4 py-2 text-sm font-bold rounded-lg transition-all focus:outline-none
-                  ${selected ? "bg-blue-600 text-white shadow-md" : "text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"}
-                `}
+            flex items-center justify-center gap-2 px-6 py-2 text-sm font-bold rounded-lg transition-all focus:outline-none w-full sm:w-auto
+            ${
+              selected
+                ? "bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5"
+                : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+            }
+          `}
               >
-                Local Licenses ({localLicenses.length})
+                <History className="size-4" />
+                Local({localLicenses.length})
               </Tab>
               <Tab
                 className={({ selected }) => `
-                  px-4 py-2 text-sm font-bold rounded-lg transition-all focus:outline-none
-                  ${selected ? "bg-blue-600 text-white shadow-md" : "text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"}
-                `}
+            flex items-center justify-center gap-2 px-6 py-2 text-sm font-bold rounded-lg transition-all focus:outline-none w-full sm:w-auto
+            ${
+              selected
+                ? "bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-black/5"
+                : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+            }
+          `}
               >
-                International Licenses ({intLicenses.length})
+                <Globe className="size-4" />
+                International({intLicenses.length})
               </Tab>
             </TabList>
           </div>

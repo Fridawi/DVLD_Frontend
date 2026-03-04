@@ -44,14 +44,16 @@ function PeopleTable({ people }: PeopleTableProps) {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th className="px-6 py-4">ID</th>
-            <th className="px-6 py-4">National No</th>
-            <th className="px-6 py-4 font-bold">Full Name</th>
-            <th className="px-6 py-4">Gender</th>
-            <th className="px-6 py-4">Date of Birth</th>
-            <th className="px-6 py-4">Phone</th>
-            <th className="px-6 py-4">Nationality</th>
-            <th className="px-6 py-4 text-center">Actions</th>
+            <th className="px-6 py-4 whitespace-nowrap">ID</th>
+            <th className="px-6 py-4 whitespace-nowrap">National No</th>
+            <th className="px-6 py-4 font-bold whitespace-nowrap min-w-50">
+              Full Name
+            </th>
+            <th className="px-6 py-4 whitespace-nowrap">Gender</th>
+            <th className="px-6 py-4 whitespace-nowrap">Date of Birth</th>
+            <th className="px-6 py-4 whitespace-nowrap">Phone</th>
+            <th className="px-6 py-4 whitespace-nowrap">Nationality</th>
+            <th className="px-6 py-4 whitespace-nowrap text-center">Actions</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
@@ -60,16 +62,16 @@ function PeopleTable({ people }: PeopleTableProps) {
               key={person.personID}
               className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
-              <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">
+              <td className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                 {person.personID}
               </td>
-              <td className="px-6 py-4 font-bold text-blue-600 dark:text-blue-400">
+              <td className="px-6 py-4 font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
                 {person.nationalNo}
               </td>
-              <td className="px-6 py-4 text-gray-900 dark:text-white">
+              <td className="px-6 py-4 text-gray-900 dark:text-white whitespace-nowrap">
                 {person.fullName}
               </td>
-              <td className="px-6 py-4">
+              <td className="px-6 py-4 whitespace-nowrap">
                 <span
                   className={`px-2.5 py-0.5 rounded-full text-xs font-semibold border ${
                     person.gendor === 0
@@ -81,11 +83,13 @@ function PeopleTable({ people }: PeopleTableProps) {
                     (person.gendor === 0 ? "Male" : "Female")}
                 </span>
               </td>
-              <td className="px-6 py-4">
+              <td className="px-6 py-4 whitespace-nowrap">
                 {new Date(person.dateOfBirth).toLocaleDateString()}
               </td>
-              <td className="px-6 py-4">{person.phone}</td>
-              <td className="px-6 py-4">{person.countryName}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{person.phone}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                {person.countryName}
+              </td>
               <td className="px-6 py-4 text-center">
                 <Menu as="div" className="relative inline-block text-left">
                   <MenuButton className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-50 text-gray-500 border border-gray-200 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-all focus:outline-none dark:bg-gray-700 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-blue-400">

@@ -22,13 +22,13 @@ export default function DriverTable({ drivers }: Props) {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th className="px-6 py-4">Driver ID</th>
-            <th className="px-6 py-4">Person ID</th>
-            <th className="px-6 py-4">National No</th>
-            <th className="px-6 py-4">Full Name</th>
-            <th className="px-6 py-4">Created By</th>
-            <th className="px-6 py-4">Date</th>
-            <th className="px-6 py-4 text-center">Actions</th>
+            <th className="px-6 py-4 whitespace-nowrap">Driver ID</th>
+            <th className="px-6 py-4 whitespace-nowrap">Person ID</th>
+            <th className="px-6 py-4 whitespace-nowrap">National No</th>
+            <th className="px-6 py-4 whitespace-nowrap">Full Name</th>
+            <th className="px-6 py-4 whitespace-nowrap">Created By</th>
+            <th className="px-6 py-4 whitespace-nowrap">Date</th>
+            <th className="px-6 py-4 text-center whitespace-nowrap">Actions</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
@@ -37,25 +37,25 @@ export default function DriverTable({ drivers }: Props) {
               key={driver.driverID}
               className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
-              <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">
+              <td className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                 {driver.driverID}
               </td>
-              <td className="px-6 py-4 text-gray-600 dark:text-gray-400">
+              <td className="px-6 py-4 text-gray-600 dark:text-gray-400 whitespace-nowrap">
                 {driver.personID}
               </td>
-              <td className="px-6 py-4 text-gray-900 dark:text-white font-medium">
+              <td className="px-6 py-4 text-gray-900 dark:text-white font-medium whitespace-nowrap">
                 {driver.nationalNo}
               </td>
-              <td className="px-6 py-4 font-bold text-blue-600 dark:text-blue-400">
+              <td className="px-6 py-4 font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
                 {driver.fullName}
               </td>
-              <td className="px-6 py-4">
+              <td className="px-6 py-4 whitespace-nowrap">
                 <span className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
                   <UserCheck size={14} className="text-slate-400" />
                   {driver.createdByUserID}
                 </span>
               </td>
-              <td className="px-6 py-4 text-gray-900 dark:text-white">
+              <td className="px-6 py-4 text-gray-900 dark:text-white whitespace-nowrap">
                 {new Date(driver.createdDate).toLocaleDateString()}
               </td>
 
