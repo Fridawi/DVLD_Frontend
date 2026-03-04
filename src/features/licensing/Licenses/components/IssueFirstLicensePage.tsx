@@ -52,7 +52,7 @@ export default function IssueFirstLicensePage() {
     );
 
   const breadcrumbPaths = [
-    { label: "Licenses Applications", path: "/licenses/issue-first-time" },
+    { label: "Licenses", path: "/licenses/issue-first-time" },
     { label: "Issue First Time License" },
   ];
 

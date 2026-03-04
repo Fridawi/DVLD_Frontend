@@ -65,7 +65,7 @@ export default function RenewLicensePage(): JSX.Element {
       toast.success(
         `License renewed successfully! New ID: #${response.licenseID}`,
       );
-      navigate(`/licenses/${response.licenseID}`);
+      navigate(`/licenses/manage/${response.licenseID}`);
     } catch (err: unknown) {
       const error = err as SerializedError;
       toast.error(error?.data?.detail ?? "Failed to renew license");

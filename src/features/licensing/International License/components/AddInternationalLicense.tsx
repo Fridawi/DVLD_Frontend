@@ -66,7 +66,7 @@ export default function AddInternationalLicense(): JSX.Element {
         `International License issued successfully! ID: #${response.result.internationalLicenseID}`,
       );
       navigate(
-        `/international-licenses/manage/${response.result.internationalLicenseID}`,
+        `/licenses/international/${response.result.internationalLicenseID}`,
       );
     } catch (err: unknown) {
       const error = err as SerializedError;

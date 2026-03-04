@@ -56,7 +56,7 @@ export default function ReplacementLicensePage(): JSX.Element {
       toast.success(
         `License replaced successfully! New ID: #${response.licenseID}`,
       );
-      navigate(`/licenses/${response.licenseID}`);
+      navigate(`/licenses/manage/${response.licenseID}`);
     } catch (err: unknown) {
       const error = err as SerializedError;
       toast.error(error?.data?.detail ?? "Failed to replace license");
