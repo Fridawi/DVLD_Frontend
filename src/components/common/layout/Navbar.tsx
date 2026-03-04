@@ -5,7 +5,11 @@ import { logOut } from "../../../features/auth/authSlice";
 import ThemeToggle from "./ThemeToggle";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+interface NavbarProps {
+  onMenuClick: () => void;
+}
+
+export default function Navbar({ onMenuClick }: NavbarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user } = useAppSelector((state) => state.auth);
@@ -30,6 +34,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start gap-2">
             <button
+              onClick={onMenuClick}
               type="button"
               className="sm:hidden text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors"
             >
@@ -38,14 +43,14 @@ export default function Navbar() {
 
             <Link
               to="/dashboard"
-              className="flex items-center gap-3 ms-2 md:me-24"
+              className="flex items-center gap-2 ms-1 md:me-8"
             >
               <img
                 src="/dvld-logo.png"
-                className="h-8 md:h-10 object-contain drop-shadow-sm"
+                className="h-8 md:h-10 w-auto object-contain drop-shadow-sm"
                 alt="Iraq DVLD Official Logo"
               />
-              <span className="self-center text-xl font-bold whitespace-nowrap dark:text-white text-gray-900 tracking-tight">
+              <span className="self-center text-lg md:text-xl font-bold whitespace-nowrap dark:text-white text-gray-900 tracking-tight">
                 DVLD{" "}
                 <span className="text-blue-600 dark:text-blue-500">System</span>
               </span>
@@ -83,7 +88,7 @@ export default function Navbar() {
                   <ul className="p-1.5 text-sm text-gray-700 dark:text-gray-300">
                     <li>
                       <Link
-                        to={`/users/${user.id}`}
+                        to={`/users/${user?.id}`}
                         onClick={() => setIsDropdownOpen(false)}
                         className="flex items-center w-full p-2.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg gap-3 transition-colors"
                       >

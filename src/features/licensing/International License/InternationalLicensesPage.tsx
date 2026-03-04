@@ -77,7 +77,7 @@ export default function InternationalLicensesPage() {
         {user?.role === "Admin" && (
           <Link
             to="add"
-            className="w-full md:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-sm active:scale-95"
+            className="w-full md:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-sm active:scale-95"
           >
             <Plus className="w-4 h-4" />
             <span>New International License</span>

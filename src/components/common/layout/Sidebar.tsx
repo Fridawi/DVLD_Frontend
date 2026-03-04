@@ -66,14 +66,18 @@ const menuItems: MenuItem[] = [
   { icon: Users, label: "Users", path: "/users", roles: ["Admin"] },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   const location = useLocation();
   const { user } = useAppSelector((state) => state.auth);
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
 
   const userRole = user?.role || "";
 
-  // تصفية القوائم بناءً على الصلاحيات
   const filterItems = (items: MenuItem[]): MenuItem[] => {
     return items
       .filter((item) => !item.roles || item.roles.includes(userRole))
@@ -93,7 +97,7 @@ export default function Sidebar() {
   const renderMenuItem = (item: MenuItem, level = 0) => {
     const hasChildren = item.children && item.children.length > 0;
     const isPathActive = location.pathname.startsWith(item.path);
-    const isOpen =
+    const isMenuOpen =
       openMenus[item.label] ||
       (isPathActive && openMenus[item.label] === undefined);
 
@@ -122,12 +126,12 @@ export default function Sidebar() {
               <span className="ms-3">{item.label}</span>
             </div>
             <ChevronDown
-              className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+              className={`size-4 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
             />
           </button>
 
           <div
-            className={`overflow-hidden transition-all duration-300 ${isOpen ? "ax-h-125 opacity-100" : "max-h-0 opacity-0"}`}
+            className={`overflow-hidden transition-all duration-300 ${isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}
           >
             <ul className="mt-1 ms-4 space-y-1 border-s border-gray-200 dark:border-gray-700">
               {item.children?.map((child) => renderMenuItem(child, level + 1))}
@@ -142,6 +146,7 @@ export default function Sidebar() {
         <NavLink
           to={item.path}
           end={item.path.split("/").length > 2}
+          onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
             `flex items-center p-2.5 rounded-lg transition-all group ${
               isActive
@@ -162,12 +167,25 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed top-0 left-0 z-40 w-72 h-full transition-transform -translate-x-full sm:translate-x-0 pt-16">
-      <div className="h-full px-3 py-4 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-gray-800 border-e border-gray-200 dark:border-gray-700">
-        <ul className="space-y-1.5 font-medium">
-          {filteredMenuItems.map((item) => renderMenuItem(item))}
-        </ul>
-      </div>
-    </aside>
+    <>
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80 sm:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`fixed top-0 left-0 z-40 w-72 h-full pt-16 transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } sm:translate-x-0`}
+      >
+        <div className="h-full px-3 py-4 overflow-y-auto custom-scrollbar bg-gray-50 dark:bg-gray-800 border-e border-gray-200 dark:border-gray-700">
+          <ul className="space-y-1.5 font-medium">
+            {filteredMenuItems.map((item) => renderMenuItem(item))}
+          </ul>
+        </div>
+      </aside>
+    </>
   );
 }
